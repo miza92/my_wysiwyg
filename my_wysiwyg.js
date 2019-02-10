@@ -3,6 +3,7 @@
     
     $.fn.my_wysiwyg = function( options ) {
         
+  
         
         $('body').prepend(" <div id='text' contenteditable='true' style='width: 800px; height: 130px; border: 2px solid black'></div>");
         $('body').prepend(" <div id='toolbar'></div>"); 
@@ -94,7 +95,7 @@
             localStorage.setItem('text',save);           
         });
         
-        setInterval(function(){ var save = $('#text').text(); localStorage.setItem('autre', save); }, 3000); 
+        setInterval(function(){ var save = $('#text').text(); localStorage.setItem('text', save); }, 10000); 
     
         var settings = $.extend({  
             
