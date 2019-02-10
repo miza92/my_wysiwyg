@@ -16,6 +16,8 @@
         $('#toolbar').append('<input type="button" value="barré" />');
         $('#toolbar').append('<input type="button" value="Fontname" />');
         $('#toolbar').append('<input type="button" value="color" />');
+        $('#toolbar').append('<input type="button" value="indent" />');
+        $('#toolbar').append('<input type="button" value="outdent" />');
 
 
         $( "input[value=G]" ).on( "click", function() { 
@@ -54,7 +56,15 @@
         $( "input[value=color]" ).on( "click", function() { 
             var y = prompt('entrer une couleur?');
             document.execCommand('foreColor',true ,y); 
-         });
+        });
+
+        $( "input[value=indent]" ).on( "click", function() { 
+            document.execCommand('indent',true ,null); 
+        });
+
+        $( "input[value=outdent]" ).on( "click", function() { 
+            document.execCommand('outdent',true ,null); 
+        });
 
          
 
