@@ -93,11 +93,8 @@
             var save = $('#text').text();
             localStorage.setItem('text',save);
         });
-
-        
-        
-
-
+        var auto = $('#text').text();
+        setInterval(function(){ localStorage.setItem('autre', auto); }, 3000);
 
         var settings = $.extend({  
             
