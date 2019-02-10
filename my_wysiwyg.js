@@ -7,7 +7,7 @@
         $('body').prepend(" <div id='text' contenteditable='true' style='width: 800px; height: 130px; border: 2px solid black'></div>");
         $('body').prepend(" <div id='toolbar'></div>"); 
         
-        var bouttons = ['bold','italic','souligner','center','gauche','droite','barré','police','color','indent','outdent','select'];
+        var bouttons = ['bold','italic','souligner','center','gauche','droite','barré','police','color','indent','outdent','select','createLink','codeSource'];
         
         for(var button = 0 ; bouttons.length > button; button++){
             if(bouttons[button] == 'select'){
@@ -50,12 +50,17 @@
         });
         
         $( "input[value=police]" ).on( "click", function() { 
-            var x = prompt('entrer le nom de votre police?');
+            var x = prompt('entrer le nom de votre police!');
             document.execCommand('fontName',true ,x); 
         });
         
+        $( "input[value=createLink]" ).on( "click", function() { 
+            var link = prompt('entrer un lien');
+            document.execCommand('createLink',true , link); 
+        });
+        
         $( "input[value=color]" ).on( "click", function() { 
-            var y = prompt('entrer une couleur?');
+            var y = prompt('entrer une couleur!');
             document.execCommand('foreColor',true ,y); 
         });
         
@@ -75,7 +80,16 @@
             document.execCommand('fontSize',true, str);    
         });
         
-        
+        $("input[value=codeSource]").on("click", function(){
+            
+            $('textarea').attr("style","display: inline-block; width: 800px; height: 130px; border: 2px solid black");
+            var t = $('#text').html();
+            $('textarea').text(t);
+            $('#text').attr("style","display: none");
+            
+        });
+
+
         var settings = $.extend({  
             
         }, options );
@@ -89,5 +103,5 @@
 
 $( "textarea" ).my_wysiwyg({ 
     style: 'display: none;' 
-
+    
 });
