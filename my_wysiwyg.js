@@ -4,18 +4,47 @@
     $.fn.my_wysiwyg = function( options ) {
 
      
-        $('body').prepend(" <div id='text' contenteditable='true' style='width: 800px; height: 130px;'></div>");// celle ci crée un contenteditable , guillaume nous a dit qu'en faite on travail pas sur le textarea mais sur une div comme celle ci
-        $('body').prepend(" <div id='toolbar'></div>"); // div qui permet de placer les bouton
+        $('body').prepend(" <div id='text' contenteditable='true' style='width: 800px; height: 130px;'></div>");
+        $('body').prepend(" <div id='toolbar'></div>"); 
 
-        $('#toolbar').append('<input type="button" value="G" />'); // creation de bouton
-        $('#toolbar').append('<input type="button" value="I" />'); // creation de bouton
-        $('#toolbar').append('<input type="button" value="S" "/>');// creation de bouton
+        $('#toolbar').append('<input type="button" value="G" />'); 
+        $('#toolbar').append('<input type="button" value="I" />'); 
+        $('#toolbar').append('<input type="button" value="S" "/>');
+        $('#toolbar').append('<input type="button" value="center" "/>');
+        $('#toolbar').append('<input type="button" value="gauche" "/>');
+        $('#toolbar').append('<input type="button" value="droite" "/>');
+        $('#toolbar').append('<input type="button" value="barré" "/>');
 
-        $( "input[value=G]" ).on( "click", function() { // permet que lorsque j'appui sur le button le text devient bold attention pour le tester il ne faut pas oublier je selectionner la parti a mettre en bold
-            document.execCommand('bold'); // c'est une fonction javascript qui permet que cree une action a chaque chose que je met entre parenthese cela permet de donner l'action voulu aller voir la doc de execcommand 
+
+        $( "input[value=G]" ).on( "click", function() { 
+            document.execCommand('bold'); 
         });
 
-        var settings = $.extend({  // correspond au option
+        $( "input[value=I]" ).on( "click", function() { 
+            document.execCommand('italic'); 
+        });
+
+        $( "input[value=S]" ).on( "click", function() { 
+            document.execCommand('underline'); 
+        });
+
+        $( "input[value=center]" ).on( "click", function() { 
+            document.execCommand('justifyCenter'); 
+        });
+
+        $( "input[value=gauche]" ).on( "click", function() { 
+            document.execCommand('justifyLeft');
+        });
+
+        $( "input[value=droite]" ).on( "click", function() { 
+            document.execCommand('justifyRight'); 
+        });
+
+        $( "input[value=barré]" ).on( "click", function() { 
+            document.execCommand('strikeThrough');  
+        });
+        
+        var settings = $.extend({  
             color: "black",
             backgroundColor: "white"
         }, options );
@@ -28,7 +57,7 @@
 }( jQuery ));
 
 $( "textarea" ).my_wysiwyg({ 
-    style: 'display: none;'// puisqu'on utilise la div pour ecrire alors on utilise pas le textarea mais on est obliger de garder le textarea
+    style: 'display: none;'
     
        
 });
