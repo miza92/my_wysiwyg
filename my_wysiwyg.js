@@ -91,17 +91,11 @@
 
         $('input[value=sauvegarde]').on('click', function(){
             var save = $('#text').text();
-            localStorage.setItem('text',save);
-            //setInterval(function(){ console.log(save); }, 3000);
-           
+            localStorage.setItem('text',save);           
         });
         
-     
         setInterval(function(){ var save = $('#text').text(); localStorage.setItem('autre', save); }, 3000); 
-      
-        
-       
-
+    
         var settings = $.extend({  
             
         }, options );
