@@ -7,7 +7,7 @@
         $('body').prepend(" <div id='text' contenteditable='true' style='width: 800px; height: 130px; border: 2px solid black'></div>");
         $('body').prepend(" <div id='toolbar'></div>"); 
         
-        var bouttons = ['bold','italic','souligner','center','gauche','droite','barré','police','color','indent','outdent','select','createLink','codeSource'];
+        var bouttons = ['bold','italic','souligner','center','gauche','droite','barré','police','color','indent','outdent','select','createLink','codeSource','sauvegarde'];
         
         for(var button = 0 ; bouttons.length > button; button++){
             if(bouttons[button] == 'select'){
@@ -81,13 +81,22 @@
         });
         
         $("input[value=codeSource]").on("click", function(){
-            
+
             $('textarea').attr("style","display: inline-block; width: 800px; height: 130px; border: 2px solid black");
             var t = $('#text').html();
             $('textarea').text(t);
             $('#text').attr("style","display: none");
             
         });
+
+        $('input[value=sauvegarde]').on('click', function(){
+            var save = $('#text').text();
+            localStorage.setItem('text',save);
+        });
+
+        
+        
+
 
 
         var settings = $.extend({  
