@@ -107,9 +107,10 @@
 
 
         var settings = $.extend({  
-            
+           
         }, options );
         
+    
         this.attr({     
             style:settings.style
         });
