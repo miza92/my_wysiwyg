@@ -2,8 +2,7 @@
 (function ( $ ) {
     
     $.fn.my_wysiwyg = function( options ) {
-        
-  
+      
         
         $('body').prepend(" <div id='text' contenteditable='true' style='width: 800px; height: 130px; border: 2px solid black'></div>");
         $('body').prepend(" <div id='toolbar'></div>"); 
@@ -21,6 +20,9 @@
                 $('#toolbar').append("<input type='button' value="+bouttons[button]+">");
             }
         }
+
+          
+       
         
         $( "input[value=bold]" ).on( "click", function() { 
             document.execCommand('bold'); 
@@ -97,6 +99,13 @@
         
         setInterval(function(){ var save = $('#text').text(); localStorage.setItem('text', save); }, 10000); 
     
+        var storageObj = localStorage.getItem('text');
+
+        if(storageObj){
+            $('#text').text(storageObj);
+        }
+
+
         var settings = $.extend({  
             
         }, options );
