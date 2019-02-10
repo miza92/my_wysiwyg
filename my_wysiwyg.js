@@ -84,12 +84,10 @@
         });
         
         $("input[value=codeSource]").on("click", function(){
-
             $('textarea').attr("style","display: inline-block; width: 800px; height: 130px; border: 2px solid black");
             var t = $('#text').html();
             $('textarea').text(t);
             $('#text').attr("style","display: none");
-            
         });
 
         $('input[value=sauvegarde]').on('click', function(){
@@ -105,12 +103,10 @@
             $('#text').text(storageObj);
         }
 
-
         var settings = $.extend({  
            
         }, options );
         
-    
         this.attr({     
             style:settings.style
         });
