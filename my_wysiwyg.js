@@ -7,28 +7,29 @@
         $('body').prepend(" <div id='text' contenteditable='true' style='width: 800px; height: 130px; border: 2px solid black'></div>");
         $('body').prepend(" <div id='toolbar'></div>"); 
         
-        $('#toolbar').append('<input type="button" value="G" />'); 
-        $('#toolbar').append('<input type="button" value="I" />'); 
-        $('#toolbar').append('<input type="button" value="S" "/>');
-        $('#toolbar').append('<input type="button" value="center" />');
-        $('#toolbar').append('<input type="button" value="gauche" />');
-        $('#toolbar').append('<input type="button" value="droite" />');
-        $('#toolbar').append('<input type="button" value="barré" />');
-        $('#toolbar').append('<input type="button" value="Fontname" />');
-        $('#toolbar').append('<input type="button" value="color" />');
-        $('#toolbar').append('<input type="button" value="indent" />');
-        $('#toolbar').append('<input type="button" value="outdent" />');
-
-
-        $( "input[value=G]" ).on( "click", function() { 
+        var bouttons = ['bold','italic','souligner','center','gauche','droite','barré','police','color','indent','outdent','select'];
+        
+        for(var button = 0 ; bouttons.length > button; button++){
+            if(bouttons[button] == 'select'){
+                $('#toolbar').append('<select></select>');
+                for(var i=1; i<8; i++){
+                    $('select').append("<option selected='selected'value="+i+">size "+i+"</option>");
+                }
+            }  
+            else{
+                $('#toolbar').append("<input type='button' value="+bouttons[button]+">");
+            }
+        }
+        
+        $( "input[value=bold]" ).on( "click", function() { 
             document.execCommand('bold'); 
         });
         
-        $( "input[value=I]" ).on( "click", function() { 
+        $( "input[value=italic]" ).on( "click", function() { 
             document.execCommand('italic'); 
         });
         
-        $( "input[value=S]" ).on( "click", function() { 
+        $( "input[value=souligner]" ).on( "click", function() { 
             document.execCommand('underline'); 
         });
         
@@ -47,29 +48,36 @@
         $( "input[value=barré]" ).on( "click", function() { 
             document.execCommand('strikeThrough');  
         });
-
-        $( "input[value=Fontname]" ).on( "click", function() { 
-           var x = prompt('entrer le nom de votre police?');
-           document.execCommand('fontName',true ,x); 
+        
+        $( "input[value=police]" ).on( "click", function() { 
+            var x = prompt('entrer le nom de votre police?');
+            document.execCommand('fontName',true ,x); 
         });
-
+        
         $( "input[value=color]" ).on( "click", function() { 
             var y = prompt('entrer une couleur?');
             document.execCommand('foreColor',true ,y); 
         });
-
+        
         $( "input[value=indent]" ).on( "click", function() { 
             document.execCommand('indent',true ,null); 
         });
-
+        
         $( "input[value=outdent]" ).on( "click", function() { 
             document.execCommand('outdent',true ,null); 
         });
-
-         
-
+        
+        $( "select" ).change(function() { 
+            var str = "";
+            $( "select option:selected" ).each(function() {
+                str += $( this ).val() + " ";
+            });  
+            document.execCommand('fontSize',true, str);    
+        });
+        
+        
         var settings = $.extend({  
-         
+            
         }, options );
         
         this.attr({     
@@ -80,7 +88,6 @@
 }( jQuery ));
 
 $( "textarea" ).my_wysiwyg({ 
-    style: 'display: none;'
-    
-    
+    style: 'display: none;' 
+
 });
