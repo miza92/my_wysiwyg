@@ -78,7 +78,7 @@
         $( "select" ).change(function() { 
             var str = "";
             $( "select option:selected" ).each(function() {
-                str += $( this ).val() + " ";
+                str += $( this ).val();
             });  
             document.execCommand('fontSize',true, str);    
         });
@@ -92,7 +92,7 @@
 
         $('input[value=sauvegarde]').on('click', function(){
             var save = $('#text').text();
-            localStorage.setItem('text',save);           
+            localStorage.setItem('savegarde',save);           
         });
         
         setInterval(function(){ var save = $('#text').text(); localStorage.setItem('text', save); }, 10000); 
